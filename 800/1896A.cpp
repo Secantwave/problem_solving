@@ -38,11 +38,23 @@ void solve() {
     for(int i=0; i<n; i++){
         cin >> arr[i];
     }
-    if(arr[0]==1){
-        cout << "YES\n";
-        return;
+    
+    map<int, int> occ;
+
+    for(int i=0; i<n; i++){
+        occ[arr[i]]++;
     }
-    cout << "NO\n";
+    
+    if(occ.size() > 2) cout << "NO\n" ; return;
+
+    int n1 = occ.begin() -> second;
+    int n2 = occ.rbegin() -> second;
+
+    if(n%2==0 && n1==n2) cout << "YES\n";
+    else if(n%2!=0 && abs(n1-n2)==1) cout << "YES\n";
+    else cout << "NO\n";
+    
+    return;
 }
 
 int main() {

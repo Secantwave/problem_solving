@@ -33,12 +33,30 @@ const int MOD = 1e9 + 7;
 #endif
 
 void solve() {
-    int n; cin >> n;
-
-    // vi a(n);
-    // for (int i = 0; i < n; i++) cin >> a[i];
-
+    int n; cin>>n;
+    vi arr(n);
+    for(int i=0; i<n; i++){
+        cin >> arr[i];
+    }
     
+    map<int, int> fq;
+
+    for(int i=0; i<n; i++){
+        fq[arr[i]]++;
+    }
+    
+    if(fq.size() > 2){
+        cout << "No\n" ; 
+        return;
+    }
+
+    int n1 = fq.begin() -> second;
+    int n2 = fq.rbegin() -> second;
+
+    if(abs(n1-n2)<=1) cout << "Yes\n";
+    else cout << "No\n";
+    
+    return;
 }
 
 int main() {
