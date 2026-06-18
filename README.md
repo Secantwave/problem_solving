@@ -1,2 +1,6 @@
 # problem_solving
-heatmap farming by doing atleast one problem a day
+cf handle : https://codeforces.com/profile/secantwave
+\
+\
+\
+heatmap farming lmao
