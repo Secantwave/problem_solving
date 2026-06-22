@@ -36,29 +36,33 @@ ll min(ll a, ll b){
     return b;
 }
 void solve() {
-    int n, p; cin >> n >> p;
+    int n;
+    ll p;
+    cin >> n >> p;
 
-    vpll ab(n);
-    for(int i = 0; i < n; i++){
-        cin >> ab[i].first;
-    }
-    for(int i = 0; i < n; i++){
-        cin >> ab[i].second;
-    }
+    vll a(n), b(n);
+    for (auto &x : a) cin >> x;
+    for (auto &x : b) cin >> x;
 
-    sort(ab.begin(), ab.end(), [](const auto &a, const auto &b){
-        return a.second < b.second;
-    });
-    int cost = 0, rem = n;
-    for(int i=0; i<n; i++){
-        if(rem==0) break;
-        cost+=p; rem--;
-
-        cost += ab[i].second * min(rem, ab[i].first);
-        rem -= min(rem, ab[i].first);
+    vpll people;
+    for (int i = 0; i < n; i++) {
+        people.push_back({b[i], a[i]});
     }
 
-    cout << cost << endl;
+    sort(people.begin(), people.end());
+
+    ll answer = p;     // Inform the cheapest sender directly.
+    ll inf = 1;
+
+    for (auto [cost, capacity] : people) {
+        if (inf == n) break;
+
+        ll cinf = min(capacity, (ll)n - inf);
+        answer += cinf * min(cost, p);
+        inf += cinf;
+    }
+
+    cout << answer << '\n';
     
 }
 
